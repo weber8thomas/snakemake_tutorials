@@ -1,0 +1,3 @@
+Building DAG of jobs...
+CyclicGraphException in line 62 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+Cyclic dependency on rule aggregate.

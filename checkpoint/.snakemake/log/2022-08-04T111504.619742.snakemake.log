@@ -1,0 +1,112 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+aggregate              2              1              1
+all                    1              1              1
+binary_decision        1              1              1
+extract                7              1              1
+process_blue           4              1              1
+process_red            3              1              1
+total                 18              1              1
+
+Select jobs to execute...
+
+[Thu Aug  4 11:15:06 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 7
+    reason: Forced execution
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 7.
+1 of 18 steps (6%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 17
+    reason: Missing output files: output/B/extract/4B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=4B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 17.
+2 of 18 steps (11%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 15
+    reason: Missing output files: output/B/extract/2B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=2B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 15.
+3 of 18 steps (17%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 13
+    reason: Missing output files: output/A/extract/5A.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=5A
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 13.
+4 of 18 steps (22%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 11
+    reason: Missing output files: output/A/extract/3A.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=3A
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 11.
+5 of 18 steps (28%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 9
+    reason: Missing output files: output/A/extract/2A.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=2A
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:15:09 2022]
+Finished job 9.
+6 of 18 steps (33%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:15:09 2022]
+rule process_red:
+    input: output/B/extract/4B.txt
+    output: output/B/red/4B.txt
+    jobid: 16
+    reason: Missing output files: output/B/red/4B.txt; Input files updated by another job: output/B/extract/4B.txt
+    wildcards: sample=B, cell=4B
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-04T111504.619742.snakemake.log

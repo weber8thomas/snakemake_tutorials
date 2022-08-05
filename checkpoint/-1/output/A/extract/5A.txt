@@ -1,0 +1,2 @@
+sample,cell,probability,ratio,keep
+A,5A,0.732,1.38,True

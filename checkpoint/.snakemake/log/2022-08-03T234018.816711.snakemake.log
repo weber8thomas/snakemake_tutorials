@@ -1,0 +1,10 @@
+Building DAG of jobs...
+InputFunctionException in line 62 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+Error:
+  AttributeError: 'SeriesGroupBy' object has no attribute 'to_dict'
+Wildcards:
+  sample=A
+  cell=1A
+Traceback:
+  File "/g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk", line 55, in process_correct_cells
+  File "/g/korbel2/weber/miniconda3/envs/mosaicatcher_env/lib/python3.9/site-packages/pandas/core/groupby/groupby.py", line 904, in __getattr__

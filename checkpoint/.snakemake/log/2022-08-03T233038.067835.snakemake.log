@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+aggregate       10              1              1
+all              1              1              1
+total           11              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:30:39 2022]
+rule aggregate:
+    input: data/raw.tsv
+    output: data/B/5B.txt
+    jobid: 10
+    reason: Missing output files: data/B/5B.txt
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+RuleException in line 51 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+NameError: The name 'cell' is unknown in this context. Did you mean 'wildcards.cell'?

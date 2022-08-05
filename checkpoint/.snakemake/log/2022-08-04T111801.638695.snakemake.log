@@ -1,0 +1,41 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+aggregate           2              1              1
+all                 1              1              1
+extract             1              1              1
+process_blue        1              1              1
+total               5              1              1
+
+Select jobs to execute...
+
+[Thu Aug  4 11:18:03 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 6
+    reason: Missing output files: output/A/extract/1A.txt
+    wildcards: sample=A, cell=1A
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 11:18:03 2022]
+Finished job 6.
+1 of 5 steps (20%) done
+Select jobs to execute...
+
+[Thu Aug  4 11:18:03 2022]
+rule process_blue:
+    input: output/A/extract/1A.txt
+    output: output/A/blue/1A.txt
+    jobid: 5
+    reason: Missing output files: output/A/blue/1A.txt; Input files updated by another job: output/A/extract/1A.txt
+    wildcards: sample=A, cell=1A
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-04T111801.638695.snakemake.log

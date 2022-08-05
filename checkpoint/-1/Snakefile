@@ -1,0 +1,75 @@
+# Import pandas library to process dataframes
+import pandas as pd
+
+# Dictionnary to retrieve cell list for each sample
+sample_cell_dict = {
+    "A": ["1A", "2A", "3A", "4A", "5A"],
+    "B": ["1B", "2B", "3B", "4B", "5B"],
+}
+# List of samples to process
+samples = list(sample_cell_dict.keys())
+
+
+rule all:
+    input:
+        ["output/agg/A.out", "output/agg/B.out"],
+
+
+rule binary_decision:
+    input:
+        file="data/raw.tsv",
+    output:
+        file="output/bin_col.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["keep"] = df["probability"].apply(lambda r: True if r > 0.5 else False)
+        df.to_csv(output.file, sep=",", index=False)
+
+
+rule extract:
+    input:
+        "output/bin_col.tsv",
+    output:
+        "output/{sample}/extract/{cell}.txt",
+    shell:
+        """
+        head -n 1 {input} > {output}
+        grep -P '{wildcards.cell}' {input} >> {output}
+        """
+
+checkpoint filter_bad_cells:
+    input:
+        file="output/bin_col.tsv",
+    output:
+        file="output/filter.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df = df.loc[df["keep"] == True]
+        df.to_csv(output.file, sep=",", index=False)
+
+def process_correct_cells(wildcards):
+    df = pd.read_csv(
+        checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file, sep=","
+    )
+    keep_dict = df[["sample", "cell"]].groupby("sample")["cell"].apply(list).to_dict()
+
+    filtered_list = list()
+    for sample in list(keep_dict.keys()):
+        for cell in keep_dict[sample]:
+            filtered_list.append(
+                "output/{sample}/extract/{cell}.txt".format(sample=sample, cell=cell)
+            )
+
+    return filtered_list
+
+rule aggregate:
+    input:
+        process_correct_cells,
+    output:
+        "output/agg/{sample}.out",
+    shell:
+        """
+        head -n1 {input[0]} > {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} >> {output}
+        """
+

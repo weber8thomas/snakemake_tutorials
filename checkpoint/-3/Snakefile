@@ -1,0 +1,51 @@
+# Import pandas library to process dataframes
+import pandas as pd
+
+# Dictionnary to retrieve cell list for each sample
+sample_cell_dict = {
+    "A": ["1A", "2A", "3A", "4A", "5A"],
+    "B": ["1B", "2B", "3B", "4B", "5B"],
+}
+# List of samples to process
+samples = list(sample_cell_dict.keys())
+
+
+list_all = list()
+# Iterate over sample and cell for each of the sample in order to build a final list of targets
+for sample in samples:
+    for cell in sample_cell_dict[sample]:
+        list_all.append(
+            "output/{sample}/extract/{cell}.txt".format(sample=sample, cell=cell)
+        )
+
+
+
+rule all:
+    input:
+        list_all
+
+
+rule binary_decision:
+    input:
+        file="data/raw.tsv",
+    output:
+        file="output/bin_col.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["keep"] = df["probability"].apply(lambda r: True if r > 0.5 else False)
+        df.to_csv(output.file, sep=",", index=False)
+
+
+
+rule extract:
+    input:
+        "output/bin_col.tsv",
+    output:
+        "output/{sample}/extract/{cell}.txt",
+    shell:
+        """
+        head -n 1 {input} > {output}
+        grep -P '{wildcards.cell}' {input} >> {output}
+        """
+
+

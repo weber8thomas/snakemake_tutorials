@@ -1,0 +1,6 @@
+sample,cell,probability,ratio,keep
+A,1A,0.873,1.54,True
+A,2A,0.679,2.12,True
+A,3A,0.746,13.74,True
+A,4A,0.281,1.13,False
+A,5A,0.732,1.38,True

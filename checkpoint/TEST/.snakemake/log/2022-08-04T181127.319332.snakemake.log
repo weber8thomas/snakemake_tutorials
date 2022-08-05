@@ -1,0 +1,270 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	2	aggregate
+	1	all
+	1	binary_decision
+	2	determine_color
+	1	filter_bad_cells
+	2	final
+	9
+
+[Thu Aug  4 18:11:28 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 8
+
+[Thu Aug  4 18:11:29 2022]
+Finished job 8.
+1 of 9 steps (11%) done
+
+[Thu Aug  4 18:11:29 2022]
+checkpoint filter_bad_cells:
+    input: output/bin_col.tsv
+    output: output/filter.tsv
+    jobid: 7
+Downstream jobs will be updated after completion.
+
+Updating job 5 (aggregate).
+Updating job 6 (aggregate).
+[Thu Aug  4 18:11:31 2022]
+Finished job 7.
+2 of 16 steps (12%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 16
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 16.
+3 of 16 steps (19%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 14
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 14.
+4 of 16 steps (25%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 12
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 12.
+5 of 16 steps (31%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 17
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 17.
+6 of 16 steps (38%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 15
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 15.
+7 of 16 steps (44%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 11
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 11.
+8 of 16 steps (50%) done
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 13
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 13.
+9 of 16 steps (56%) done
+
+[Thu Aug  4 18:11:32 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 9
+    wildcards: sample=A
+
+[Thu Aug  4 18:11:32 2022]
+Finished job 9.
+10 of 16 steps (62%) done
+
+[Thu Aug  4 18:11:32 2022]
+checkpoint determine_color:
+    input: output/agg/A.out
+    output: output/color/A.tsv
+    jobid: 3
+    wildcards: sample=A
+Downstream jobs will be updated after completion.
+
+Updating job 1 (final).
+[Thu Aug  4 18:11:33 2022]
+Finished job 3.
+11 of 20 steps (55%) done
+
+[Thu Aug  4 18:11:33 2022]
+rule process_blue:
+    input: output/A/extract/1A.txt
+    output: output/A/blue/1A.txt
+    jobid: 19
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 18:11:35 2022]
+Finished job 19.
+12 of 20 steps (60%) done
+
+[Thu Aug  4 18:11:35 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 10
+    wildcards: sample=B
+
+[Thu Aug  4 18:11:35 2022]
+Finished job 10.
+13 of 20 steps (65%) done
+
+[Thu Aug  4 18:11:35 2022]
+checkpoint determine_color:
+    input: output/agg/B.out
+    output: output/color/B.tsv
+    jobid: 4
+    wildcards: sample=B
+Downstream jobs will be updated after completion.
+
+Updating job 2 (final).
+[Thu Aug  4 18:11:36 2022]
+Finished job 4.
+14 of 23 steps (61%) done
+
+[Thu Aug  4 18:11:36 2022]
+rule process_red:
+    input: output/B/extract/4B.txt
+    output: output/B/red/4B.txt
+    jobid: 25
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 18:11:38 2022]
+Finished job 25.
+15 of 23 steps (65%) done
+
+[Thu Aug  4 18:11:38 2022]
+rule process_blue:
+    input: output/A/extract/5A.txt
+    output: output/A/blue/5A.txt
+    jobid: 22
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 18:11:39 2022]
+Finished job 22.
+16 of 23 steps (70%) done
+
+[Thu Aug  4 18:11:39 2022]
+rule process_blue:
+    input: output/A/extract/2A.txt
+    output: output/A/blue/2A.txt
+    jobid: 20
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 18:11:41 2022]
+Finished job 20.
+17 of 23 steps (74%) done
+
+[Thu Aug  4 18:11:41 2022]
+rule process_red:
+    input: output/B/extract/5B.txt
+    output: output/B/red/5B.txt
+    jobid: 26
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 18:11:42 2022]
+Finished job 26.
+18 of 23 steps (78%) done
+
+[Thu Aug  4 18:11:42 2022]
+rule process_red:
+    input: output/A/extract/3A.txt
+    output: output/A/red/3A.txt
+    jobid: 21
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 18:11:43 2022]
+Finished job 21.
+19 of 23 steps (83%) done
+
+[Thu Aug  4 18:11:44 2022]
+rule process_blue:
+    input: output/B/extract/2B.txt
+    output: output/B/blue/2B.txt
+    jobid: 24
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 24.
+20 of 23 steps (87%) done
+
+[Thu Aug  4 18:11:45 2022]
+rule final:
+    input: output/B/blue/2B.txt, output/B/red/4B.txt, output/B/red/5B.txt
+    output: output/final/B.out
+    jobid: 23
+    wildcards: sample=B
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 23.
+21 of 23 steps (91%) done
+
+[Thu Aug  4 18:11:45 2022]
+rule final:
+    input: output/A/blue/1A.txt, output/A/blue/2A.txt, output/A/red/3A.txt, output/A/blue/5A.txt
+    output: output/final/A.out
+    jobid: 18
+    wildcards: sample=A
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 18.
+22 of 23 steps (96%) done
+
+[Thu Aug  4 18:11:45 2022]
+localrule all:
+    input: output/final/A.out, output/final/B.out
+    jobid: 0
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 0.
+23 of 23 steps (100%) done
+Complete log: /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/TEST/.snakemake/log/2022-08-04T181127.319332.snakemake.log

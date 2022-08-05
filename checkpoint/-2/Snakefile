@@ -1,0 +1,54 @@
+# Import pandas library to process dataframes
+import pandas as pd
+
+# Dictionnary to retrieve cell list for each sample
+sample_cell_dict = {
+    "A": ["1A", "2A", "3A", "4A", "5A"],
+    "B": ["1B", "2B", "3B", "4B", "5B"],
+}
+# List of samples to process
+samples = list(sample_cell_dict.keys())
+
+
+
+rule all:
+    input:
+        ["output/agg/A.out", "output/agg/B.out"],
+
+
+rule binary_decision:
+    input:
+        file="data/raw.tsv",
+    output:
+        file="output/bin_col.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["keep"] = df["probability"].apply(lambda r: True if r > 0.5 else False)
+        df.to_csv(output.file, sep=",", index=False)
+
+
+
+rule extract:
+    input:
+        "output/bin_col.tsv",
+    output:
+        "output/{sample}/extract/{cell}.txt",
+    shell:
+        """
+        head -n 1 {input} > {output}
+        grep -P '{wildcards.cell}' {input} >> {output}
+        """
+
+
+
+rule aggregate:
+    input:
+        [expand("output/{sample}/extract/{cell}.txt", sample=sample, cell=sample_cell_dict[sample]) for sample in samples]
+    output:
+        "output/agg/{sample}.out",
+    shell:
+        """
+        head -n1 {input[0]} > {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} >> {output}
+        """
+

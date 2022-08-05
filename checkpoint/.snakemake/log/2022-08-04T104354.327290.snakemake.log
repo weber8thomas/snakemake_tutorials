@@ -1,0 +1,3 @@
+NameError in line 123 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/Snakefile:
+name 'samples' is not defined
+  File "/g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/Snakefile", line 123, in <module>

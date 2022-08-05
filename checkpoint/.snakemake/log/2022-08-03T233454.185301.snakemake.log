@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count    min threads    max threads
+----------------  -------  -------------  -------------
+aggregate              10              1              1
+all                     1              1              1
+binary_decision         1              1              1
+filter_bad_cells        1              1              1
+total                  13              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:34:55 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: data/bin_col.tsv
+    jobid: 3
+    reason: Missing output files: data/bin_col.tsv
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-03T233454.185301.snakemake.log

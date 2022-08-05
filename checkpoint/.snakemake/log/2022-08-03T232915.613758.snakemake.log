@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+aggregate       10              1              1
+all              1              1              1
+total           11              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:29:16 2022]
+rule aggregate:
+    input: data/raw.tsv
+    output: data/B/5B.txt
+    jobid: 10
+    reason: Code has changed since last execution
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:29:16 2022]
+Error in rule aggregate:
+    jobid: 10
+    output: data/B/5B.txt
+    shell:
+        
+        head -n 1 data/raw.tsv > data/B/5B.txt
+        grep -P '5B' data/raw.tsv >>
+         data/B/5B.txt
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job aggregate since they might be corrupted:
+data/B/5B.txt
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-03T232915.613758.snakemake.log

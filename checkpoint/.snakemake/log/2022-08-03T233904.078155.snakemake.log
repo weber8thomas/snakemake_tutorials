@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+aggregate       10              1              1
+all              1              1              1
+total           11              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:39:05 2022]
+rule aggregate:
+    input: data/A/1A.txt, data/A/2A.txt, data/A/3A.txt, data/A/4A.txt, data/A/5A.txt, data/B/1B.txt, data/B/2B.txt, data/B/3B.txt, data/B/4B.txt, data/B/5B.txt
+    output: data/B/5B.txt
+    jobid: 12
+    reason: Updated input files: data/A/5A.txt, data/A/3A.txt, data/B/2B.txt, data/B/4B.txt, data/A/2A.txt, data/B/1B.txt, data/A/1A.txt, data/B/3B.txt, data/A/4A.txt
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.

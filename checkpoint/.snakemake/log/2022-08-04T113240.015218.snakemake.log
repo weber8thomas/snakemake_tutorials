@@ -1,0 +1,12 @@
+Building DAG of jobs...
+AmbiguousRuleException:
+Rules aggregate and final are ambiguous for the file output/agg/A.out.
+Consider starting rule output with a unique prefix, constrain your wildcards, or use the ruleorder directive.
+Wildcards:
+	aggregate: sample=A
+	final: sample=A
+Expected input files:
+	aggregate: output/filter.tsv
+	final: output/color/A.tsvExpected output files:
+	aggregate: output/agg/A.out
+	final: output/agg/A.out

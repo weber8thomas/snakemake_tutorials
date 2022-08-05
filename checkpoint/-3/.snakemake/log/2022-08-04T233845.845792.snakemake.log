@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	binary_decision
+	10	extract
+	12
+
+[Thu Aug  4 23:38:46 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 11
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/-3/.snakemake/log/2022-08-04T233845.845792.snakemake.log

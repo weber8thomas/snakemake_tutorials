@@ -1,0 +1,9 @@
+Building DAG of jobs...
+InputFunctionException in line 59 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+Error:
+  TypeError: '_GeneratorContextManager' object is not subscriptable
+Wildcards:
+  sample=A
+  cell=1A
+Traceback:
+  File "/g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk", line 52, in process_correct_cells

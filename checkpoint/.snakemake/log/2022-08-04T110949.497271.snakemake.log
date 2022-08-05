@@ -1,0 +1,12 @@
+Building DAG of jobs...
+AmbiguousRuleException:
+Rules aggregate and extract are ambiguous for the file output/B/5B.txt.
+Consider starting rule output with a unique prefix, constrain your wildcards, or use the ruleorder directive.
+Wildcards:
+	aggregate: sample=B/5B
+	extract: cell=5B,sample=B
+Expected input files:
+	aggregate: output/A/blue/1A.txt output/A/blue/2A.txt output/A/red/3A.txt output/A/blue/5A.txt output/B/blue/2B.txt output/B/red/4B.txt output/B/red/5B.txt
+	extract: output/bin_col.tsvExpected output files:
+	aggregate: output/B/5B.txt
+	extract: output/B/5B.txt

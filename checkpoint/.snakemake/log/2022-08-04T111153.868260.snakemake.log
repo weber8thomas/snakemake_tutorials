@@ -1,0 +1,12 @@
+Building DAG of jobs...
+AmbiguousRuleException:
+Rules extract and process_blue are ambiguous for the file output/A/blue/1A.txt.
+Consider starting rule output with a unique prefix, constrain your wildcards, or use the ruleorder directive.
+Wildcards:
+	extract: cell=1A,sample=A/blue
+	process_blue: cell=1A,sample=A
+Expected input files:
+	extract: output/bin_col.tsv
+	process_blue: output/A/1A.txtExpected output files:
+	extract: output/A/blue/1A.txt
+	process_blue: output/A/blue/1A.txt

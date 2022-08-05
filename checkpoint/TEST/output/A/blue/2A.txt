@@ -1,0 +1,2 @@
+sample,cell,probability,ratio,keep,processed_ratio
+A,2A,0.679,2.12,True,2120.0

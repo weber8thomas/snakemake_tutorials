@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="data-dependent-conditional-execution-with-snakemake">Data-dependent conditional execution with Snakemake</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../highways.jpeg" alt="summary"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Los Angeles highways aerial view</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><em>https://i0.wp.com/s26162.pcdn.co/wp-content/uploads/2022/07/highways.jpeg?ssl=1</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="introduction">Introduction</h2>
+<p>Dealing with pipeline developement usually implies to think about both the normal and expected execution, but also to specific use-cases to handle or data-dependent conditions, sometimes difficult to determine before running the workflow.</p>
+<p>In this tutorial, we will use <a href="https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution"><strong>checkpoint</strong> rules</a> to handle these behaviors. Snakemake <strong>checkpoints</strong> allow a &quot;conditional reevaluation of the DAG of jobs based on the content outputs is possible&quot;.</p>
+<h2 id="0-data--dependencies-preparation">0. Data &amp; Dependencies preparation</h2>
+<p>Before diving into the snakepool, we will first create a directory dedicated to this tutorial.</p>
+<pre class="hljs"><code><div>mkdir snakemake_checkpoints &amp;&amp; <span class="hljs-built_in">cd</span> snakemake_checkpoints
+mkdir data
+touch Snakefile
+</div></code></pre>
+<p>If you do not have snakemake already installed, you can create and activate a conda environment with the following:</p>
+<pre class="hljs"><code><div>conda create -n snakemake_tutorial -c bioconda <span class="hljs-string">'snakemake=7.9.0'</span>
+conda activate snakemake_tutorial
+</div></code></pre>
+<p>Then, we will generate a simple table dataset, imitating a single-cell omics dataset, that will be used for the rest of the pipeline as an input with the following:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"sample,cell,probability,ratio
+A,1A,0.873,1.54
+A,2A,0.679,2.12
+A,3A,0.746,13.74
+A,4A,0.281,1.13
+A,5A,0.732,1.38
+B,1B,0.123,1.91
+B,2B,0.912,0.99
+B,3B,0.373,1.52
+B,4B,0.648,10.14
+B,5B,0.976,12.08"</span> &gt; data/raw.tsv
+</div></code></pre>
+<p>The table created looks like the following:</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+</tr>
+<tr>
+<td>A</td>
+<td>4A</td>
+<td>0.281</td>
+<td>1.13</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+</tr>
+<tr>
+<td>B</td>
+<td>1B</td>
+<td>0.123</td>
+<td>1.91</td>
+</tr>
+<tr>
+<td>B</td>
+<td>2B</td>
+<td>0.912</td>
+<td>0.99</td>
+</tr>
+<tr>
+<td>B</td>
+<td>3B</td>
+<td>0.373</td>
+<td>1.52</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4B</td>
+<td>0.648</td>
+<td>10.14</td>
+</tr>
+<tr>
+<td>B</td>
+<td>5B</td>
+<td>0.976</td>
+<td>12.08</td>
+</tr>
+</tbody>
+</table>
+<p>Two samples (A and B) and the different cells associated (1[A|B] to 5[A|B]) are representend. Each cell has a putative probability and ratio used as metrics into this example.</p>
+<h2 id="1-initial-run">1. Initial run</h2>
+<h1 id="a-extract-info-at-the-cell-level-from-processed-table">A. Extract info at the cell level from processed table</h1>
+<p>Please paste the following into the <code>Snakefile</code> file.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">## Snakefile v1</span>
+
+<span class="hljs-comment"># Import pandas library to process dataframes</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-comment"># Dictionnary to retrieve cell list for each sample</span>
+sample_cell_dict = {
+    <span class="hljs-string">"A"</span>: [<span class="hljs-string">"1A"</span>, <span class="hljs-string">"2A"</span>, <span class="hljs-string">"3A"</span>, <span class="hljs-string">"4A"</span>, <span class="hljs-string">"5A"</span>],
+    <span class="hljs-string">"B"</span>: [<span class="hljs-string">"1B"</span>, <span class="hljs-string">"2B"</span>, <span class="hljs-string">"3B"</span>, <span class="hljs-string">"4B"</span>, <span class="hljs-string">"5B"</span>],
+}
+<span class="hljs-comment"># List of samples to process</span>
+samples = list(sample_cell_dict.keys())
+
+
+list_all = list()
+<span class="hljs-comment"># Iterate over sample and cell for each of the sample in order to build a final list of targets</span>
+<span class="hljs-keyword">for</span> sample <span class="hljs-keyword">in</span> samples:
+    <span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> sample_cell_dict[sample]:
+        list_all.append(
+            <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>.format(sample=sample, cell=cell)
+        )
+print(list_all)
+
+
+<span class="hljs-comment"># Snakemake backwards behavior (rule all = final target)</span>
+rule all:
+    input:
+        list_all
+
+<span class="hljs-comment"># Create a new file with an additional column keep (x&gt;0.5 = True ; x&lt;=0.5 = False)</span>
+rule binary_decision:
+    input:
+        file=<span class="hljs-string">"data/raw.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"keep"</span>] = df[<span class="hljs-string">"probability"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-comment"># Extract specific line corresponding to cell into a new file (named regarding cell)</span>
+rule extract:
+    input:
+        <span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n 1 {input} &gt; {output}
+        grep -P '{wildcards.cell}' {input} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>In this first snakemake pipeline, two rules (and the classic target <code>rule all</code>) were created. The <code>rule binary_decision</code> corresponds to a first processing on the dataframe that will results in the creation of a new column <code>keep</code>, respecting the following behavior (x&gt;0.5 = True ; x&lt;=0.5 = False).
+The <code>rule extract</code> corresponds to the creation of a specific file for each different cell by keeping the table header and the corresponding line of the cell.</p>
+<p>Here, the <code>rule all</code> takes as an input all the final targets of the rule target, so a list of 10 different file paths, each corresponding to a single-cell.</p>
+<p>Let's now perform a <strong>dry-run</strong> to check if eveything is looking well connected with the following:</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --dry-run
+</div></code></pre>
+<p>You should obtain the following result:</p>
+<pre class="hljs"><code><div>[<span class="hljs-string">'output/A/extract/1A.txt'</span>, <span class="hljs-string">'output/A/extract/2A.txt'</span>, <span class="hljs-string">'output/A/extract/3A.txt'</span>, <span class="hljs-string">'output/A/extract/4A.txt'</span>, <span class="hljs-string">'output/A/extract/5A.txt'</span>, <span class="hljs-string">'output/B/extract/1B.txt'</span>, <span class="hljs-string">'output/B/extract/2B.txt'</span>, <span class="hljs-string">'output/B/extract/3B.txt'</span>, <span class="hljs-string">'output/B/extract/4B.txt'</span>, <span class="hljs-string">'output/B/extract/5B.txt'</span>]
+Building DAG of <span class="hljs-built_in">jobs</span>...
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       all
+        1       binary_decision
+        10      extract
+        12
+
+[Thu Aug  4 17:39:49 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 11
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 1
+    wildcards: sample=A, cell=1A
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 3
+    wildcards: sample=A, cell=3A
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/4A.txt
+    jobid: 4
+    wildcards: sample=A, cell=4A
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/1B.txt
+    jobid: 6
+    wildcards: sample=B, cell=1B
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/3B.txt
+    jobid: 8
+    wildcards: sample=B, cell=3B
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 10
+    wildcards: sample=B, cell=5B
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 2
+    wildcards: sample=A, cell=2A
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 5
+    wildcards: sample=A, cell=5A
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 7
+    wildcards: sample=B, cell=2B
+
+
+[Thu Aug  4 17:39:49 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 9
+    wildcards: sample=B, cell=4B
+
+
+[Thu Aug  4 17:39:49 2022]
+localrule all:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    jobid: 0
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       all
+        1       binary_decision
+        10      extract
+        12
+This was a dry-run (flag -n). The order of <span class="hljs-built_in">jobs</span> does not reflect the order of execution.
+</div></code></pre>
+<p>Let's now run concretely the snakemake:</p>
+<pre class="hljs"><code><div>snakemake --cores 1
+</div></code></pre>
+<p>that produces the following output:</p>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       all
+        1       binary_decision
+        10      extract
+        12
+
+[Thu Aug  4 23:39:42 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 11
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       binary_decision
+        1
+[Thu Aug  4 23:39:43 2022]
+Finished job 11.
+1 of 12 steps (8%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 9
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 9.
+2 of 12 steps (17%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 7
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 7.
+3 of 12 steps (25%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 5
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 5.
+4 of 12 steps (33%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 2
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 2.
+5 of 12 steps (42%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 10
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 10.
+6 of 12 steps (50%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/3B.txt
+    jobid: 8
+    wildcards: sample=B, cell=3B
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 8.
+7 of 12 steps (58%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/1B.txt
+    jobid: 6
+    wildcards: sample=B, cell=1B
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 6.
+8 of 12 steps (67%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/4A.txt
+    jobid: 4
+    wildcards: sample=A, cell=4A
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 4.
+9 of 12 steps (75%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:44 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 1
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 23:39:44 2022]
+Finished job 1.
+10 of 12 steps (83%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:45 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 3
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 23:39:45 2022]
+Finished job 3.
+11 of 12 steps (92%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:39:45 2022]
+localrule all:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    jobid: 0
+
+[Thu Aug  4 23:39:45 2022]
+Finished job 0.
+12 of 12 steps (100%) <span class="hljs-keyword">done</span>
+</div></code></pre>
+<p>Let's now check the content of the outputs.</p>
+<pre class="hljs"><code><div>tree -h output/
+</div></code></pre>
+<pre class="hljs"><code><div>output
+|-- [4.0K]  A
+|   `-- [4.0K]  extract
+|       |-- [  56]  1A.txt
+|       |-- [  56]  2A.txt
+|       |-- [  57]  3A.txt
+|       |-- [  57]  4A.txt
+|       `-- [  56]  5A.txt
+|-- [4.0K]  B
+|   `-- [4.0K]  extract
+|       |-- [  71]  1B.txt
+|       |-- [  56]  2B.txt
+|       |-- [  57]  3B.txt
+|       |-- [  57]  4B.txt
+|       `-- [  57]  5B.txt
+`-- [ 265]  bin_col.tsv
+
+4 directories, 11 files
+</div></code></pre>
+<pre class="hljs"><code><div>cat <span class="hljs-string">"output/bin_col.tsv"</span>
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>4A</td>
+<td>0.281</td>
+<td>1.13</td>
+<td>False</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>1B</td>
+<td>0.123</td>
+<td>1.91</td>
+<td>False</td>
+</tr>
+<tr>
+<td>B</td>
+<td>2B</td>
+<td>0.912</td>
+<td>0.99</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>3B</td>
+<td>0.373</td>
+<td>1.52</td>
+<td>False</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4B</td>
+<td>0.648</td>
+<td>10.14</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>5B</td>
+<td>0.976</td>
+<td>12.08</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that a new column <code>keep</code> was created, filled with a boolean based on the <code>probability</code> (cutoff=0.5) column.</p>
+<pre class="hljs"><code><div>cat <span class="hljs-string">"output/A/extract/1A.txt"</span>
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>The files at the cell-level were also properly created, keeping only the information relative to each single-cell.</p>
+<h3 id="snakemake-directed-acyclic-graph-dag-summary">Snakemake Directed acyclic graph (DAG) summary</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../Slide1.png" alt="summary"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Step 1A. Graphical representation</em></td>
+</tr>
+</tbody>
+</table>
+<h1 id="b-aggregate-data-into-a-rule">B. Aggregate data into a rule</h1>
+<p>As you surely noticed, it may not be handy to first generate a list of inputs like the way we did. We will here add a new <code>rule aggregate</code> that will leverages the python <code>expand</code> statement to automatically retrieve input targets and concatenate previous single-cell file at the sample level. Thus, the modified <code>rule all</code> now only needs to take two elements corresponding at the two samples processed.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">## Snakefile v1.1</span>
+
+<span class="hljs-comment"># Import pandas library to process dataframes</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-comment"># Dictionnary to retrieve cell list for each sample</span>
+sample_cell_dict = {
+    <span class="hljs-string">"A"</span>: [<span class="hljs-string">"1A"</span>, <span class="hljs-string">"2A"</span>, <span class="hljs-string">"3A"</span>, <span class="hljs-string">"4A"</span>, <span class="hljs-string">"5A"</span>],
+    <span class="hljs-string">"B"</span>: [<span class="hljs-string">"1B"</span>, <span class="hljs-string">"2B"</span>, <span class="hljs-string">"3B"</span>, <span class="hljs-string">"4B"</span>, <span class="hljs-string">"5B"</span>],
+}
+<span class="hljs-comment"># List of samples to process</span>
+samples = list(sample_cell_dict.keys())
+
+<span class="hljs-comment"># Snakemake backwards behavior (rule all = aggregate_final target)</span>
+rule all:
+    input:
+        <span class="hljs-comment">#========MODIFIED========#</span>
+        [<span class="hljs-string">"output/agg/A.out"</span>, <span class="hljs-string">"output/agg/B.out"</span>],
+
+<span class="hljs-comment"># Create a new file with an additional column keep (x&gt;0.5 = True ; x&lt;=0.5 = False)</span>
+rule binary_decision:
+    input:
+        file=<span class="hljs-string">"data/raw.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"keep"</span>] = df[<span class="hljs-string">"probability"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-comment"># Extract specific line corresponding to cell into a new file (named regarding cell)</span>
+rule extract:
+    input:
+        <span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n 1 {input} &gt; {output}
+        grep -P '{wildcards.cell}' {input} &gt;&gt; {output}
+        """</span>
+
+
+<span class="hljs-comment">#========ADDITION========#</span>
+rule aggregate:
+    input:
+        <span class="hljs-comment"># Use expand function to compute list of targets</span>
+        [expand(<span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>, sample=sample, cell=sample_cell_dict[sample]) <span class="hljs-keyword">for</span> sample <span class="hljs-keyword">in</span> samples]
+    output:
+        <span class="hljs-string">"output/agg/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>Like previously, let's first check with the <code>--dry-run</code> option</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --dry-run --forceall
+</div></code></pre>
+<p>Expected output:</p>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        10      extract
+        14
+
+[Thu Aug  4 17:48:46 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 13
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 3
+    wildcards: sample=A, cell=1A
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 4
+    wildcards: sample=A, cell=2A
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/4A.txt
+    jobid: 6
+    wildcards: sample=A, cell=4A
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/1B.txt
+    jobid: 8
+    wildcards: sample=B, cell=1B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/3B.txt
+    jobid: 10
+    wildcards: sample=B, cell=3B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 12
+    wildcards: sample=B, cell=5B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 5
+    wildcards: sample=A, cell=3A
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 7
+    wildcards: sample=A, cell=5A
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 9
+    wildcards: sample=B, cell=2B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 11
+    wildcards: sample=B, cell=4B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 2
+    wildcards: sample=B
+
+
+[Thu Aug  4 17:48:46 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 1
+    wildcards: sample=A
+
+
+[Thu Aug  4 17:48:46 2022]
+localrule all:
+    input: output/agg/A.out, output/agg/B.out
+    jobid: 0
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        10      extract
+        14
+This was a dry-run (flag -n). The order of <span class="hljs-built_in">jobs</span> does not reflect the order of execution.
+</div></code></pre>
+<p>And then by running concretely:</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --forceall
+</div></code></pre>
+<p>Expected output:</p>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        10      extract
+        14
+
+[Thu Aug  4 23:50:05 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 13
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       binary_decision
+        1
+[Thu Aug  4 23:50:06 2022]
+Finished job 13.
+1 of 14 steps (7%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 11
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 23:50:06 2022]
+Finished job 11.
+2 of 14 steps (14%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 9
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 23:50:06 2022]
+Finished job 9.
+3 of 14 steps (21%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 7
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 23:50:06 2022]
+Finished job 7.
+4 of 14 steps (29%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 5
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 23:50:06 2022]
+Finished job 5.
+5 of 14 steps (36%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 12
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 23:50:06 2022]
+Finished job 12.
+6 of 14 steps (43%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/3B.txt
+    jobid: 10
+    wildcards: sample=B, cell=3B
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 10.
+7 of 14 steps (50%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/1B.txt
+    jobid: 8
+    wildcards: sample=B, cell=1B
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 8.
+8 of 14 steps (57%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/4A.txt
+    jobid: 6
+    wildcards: sample=A, cell=4A
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 6.
+9 of 14 steps (64%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 3
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 3.
+10 of 14 steps (71%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 4
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 4.
+11 of 14 steps (79%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 2
+    wildcards: sample=B
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 2.
+12 of 14 steps (86%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/4A.txt, output/A/extract/5A.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 1
+    wildcards: sample=A
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 1.
+13 of 14 steps (93%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 23:50:07 2022]
+localrule all:
+    input: output/agg/A.out, output/agg/B.out
+    jobid: 0
+
+[Thu Aug  4 23:50:07 2022]
+Finished job 0.
+14 of 14 steps (100%) <span class="hljs-keyword">done</span>
+</div></code></pre>
+<p>Let's now check the content</p>
+<pre class="hljs"><code><div>cat output/agg/A.out
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>4A</td>
+<td>0.281</td>
+<td>1.13</td>
+<td>False</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>Tables produced are, as expected, at the sample level.</p>
+<h3 id="snakemake-dag-summary">Snakemake DAG summary</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../Slide2.png" alt="summary"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Step 1B. Graphical representation</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-first-checkpoint-filtering-low-quality-cells">2. First checkpoint: filtering low-quality cells</h2>
+<p>Okay, let's start now more concretely with the purpose of the tutorial. Here are some explanations about the concept of checkpoints and how to technically incorporate them into a snakemake pipeline.</p>
+<p>A checkpoint rule differentiates itself by the use of the <code>checkpoint</code> statement instead of the <code>rule</code> one. This implies that after that specific rule, snakemake will need to dynamically recomputes the Directed Acyclic Graph (DAG) of execution.</p>
+<pre class="hljs"><code><div>checkpoint filter_bad_cells:
+    input:
+        file
+    output:
+        file
+    shell/run/script:
+        SOME_COMMANDS
+</div></code></pre>
+<p>Instead of accessing the content of this special checkpoint rule by a new rule as we would do classicaly, we need here to define a python function (<code>def</code>) that will return a new list of targets. This function will parse the result of the checkpoint rule, allowing different conditional processing: filter out elements, conditionnaly redistribute to specific rules the elements.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells</span><span class="hljs-params">(wildcards)</span>:</span>
+    <span class="hljs-keyword">with</span> open checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file <span class="hljs-keyword">as</span> f:
+        filtered_list = list()
+        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:
+            filtered_list.append(line)
+        <span class="hljs-keyword">return</span> filtered_list
+</div></code></pre>
+<p>How to connect and gather everything? By using a last rule that will take directly the function as an input.</p>
+<pre class="hljs"><code><div>rule aggregate:
+    input:
+        INPUT_FCT,
+    output:
+        file
+    shell/run/script:
+        SOME_COMMANDS
+</div></code></pre>
+<p>Let's now apply that to our pipeline.</p>
+<p>First, the checkpoint will create a new dataframe that comprises only cells where the column <code>keep</code> corresponds to <code>True</code>.</p>
+<pre class="hljs"><code><div>checkpoint filter_bad_cells:
+    input:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/filter.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df = df.loc[df[<span class="hljs-string">"keep"</span>] == <span class="hljs-literal">True</span>]
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+</div></code></pre>
+<p>Then, through a python function, we will first access this dataframe through the syntax <code>checkpoints.rule_name.get(w=wildcards.w).output</code>, then processing the dataframe to create the list of cells we want to be processed. As the target rule is the <code>rule extract</code>, we will use the output syntax of this rule to create the final list of targets.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells</span><span class="hljs-params">(wildcards)</span>:</span>
+    df = pd.read_csv(
+        checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file, sep=<span class="hljs-string">","</span>
+    )
+    keep_dict = df[[<span class="hljs-string">"sample"</span>, <span class="hljs-string">"cell"</span>]].groupby(<span class="hljs-string">"sample"</span>)[<span class="hljs-string">"cell"</span>].apply(list).to_dict()
+
+    filtered_list = list()
+    <span class="hljs-keyword">for</span> sample <span class="hljs-keyword">in</span> list(keep_dict.keys()):
+        <span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> keep_dict[sample]:
+            filtered_list.append(
+                <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>.format(sample=sample, cell=cell)
+            )
+
+    <span class="hljs-keyword">return</span> filtered_list
+</div></code></pre>
+<p>Instead of using the previous input of the <code>rule aggregate</code> directly as the output of the <code>rule extract</code>, we will here give the function <code>process_correct_cells</code> as an input.</p>
+<pre class="hljs"><code><div>rule aggregate:
+    input:
+        process_correct_cells,
+    output:
+        <span class="hljs-string">"output/agg/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>You can modify directly your Snakefile with the following:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">## Snakefile v2</span>
+
+<span class="hljs-comment"># Import pandas library to process dataframes</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-comment"># Dictionnary to retrieve cell list for each sample</span>
+sample_cell_dict = {
+    <span class="hljs-string">"A"</span>: [<span class="hljs-string">"1A"</span>, <span class="hljs-string">"2A"</span>, <span class="hljs-string">"3A"</span>, <span class="hljs-string">"4A"</span>, <span class="hljs-string">"5A"</span>],
+    <span class="hljs-string">"B"</span>: [<span class="hljs-string">"1B"</span>, <span class="hljs-string">"2B"</span>, <span class="hljs-string">"3B"</span>, <span class="hljs-string">"4B"</span>, <span class="hljs-string">"5B"</span>],
+}
+<span class="hljs-comment"># List of samples to process</span>
+samples = list(sample_cell_dict.keys())
+
+
+rule all:
+    input:
+        [<span class="hljs-string">"output/agg/A.out"</span>, <span class="hljs-string">"output/agg/B.out"</span>],
+
+
+rule binary_decision:
+    input:
+        file=<span class="hljs-string">"data/raw.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"keep"</span>] = df[<span class="hljs-string">"probability"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule extract:
+    input:
+        <span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n 1 {input} &gt; {output}
+        grep -P '{wildcards.cell}' {input} &gt;&gt; {output}
+        """</span>
+
+checkpoint filter_bad_cells:
+    input:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/filter.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df = df.loc[df[<span class="hljs-string">"keep"</span>] == <span class="hljs-literal">True</span>]
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells</span><span class="hljs-params">(wildcards)</span>:</span>
+    df = pd.read_csv(
+        checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file, sep=<span class="hljs-string">","</span>
+    )
+    keep_dict = df[[<span class="hljs-string">"sample"</span>, <span class="hljs-string">"cell"</span>]].groupby(<span class="hljs-string">"sample"</span>)[<span class="hljs-string">"cell"</span>].apply(list).to_dict()
+
+    filtered_list = list()
+    <span class="hljs-keyword">for</span> sample <span class="hljs-keyword">in</span> list(keep_dict.keys()):
+        <span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> keep_dict[sample]:
+            filtered_list.append(
+                <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>.format(sample=sample, cell=cell)
+            )
+
+    <span class="hljs-keyword">return</span> filtered_list
+
+rule aggregate:
+    input:
+        process_correct_cells,
+    output:
+        <span class="hljs-string">"output/agg/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>In order to avoid snakemake to use any previously generated results, we will first delete the content of the <code>output</code> folder.</p>
+<pre class="hljs"><code><div>rm -rdf output/
+</div></code></pre>
+<p>As you are now used to, we will then first try the pipeline with a dry-run:</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --dry-run --forceall
+</div></code></pre>
+<p>Expected output:</p>
+<pre class="hljs"><code><div>Building DAG of jobs...
+Job counts:
+        count   jobs
+        2       aggregate
+        1       all
+        1       binary_decision
+        1       filter_bad_cells
+        5
+
+[Thu Aug  4 17:58:10 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 4
+
+[Thu Aug  4 17:58:10 2022]
+checkpoint filter_bad_cells:
+    input: output/bin_col.tsv
+    output: output/filter.tsv
+    jobid: 3
+Downstream jobs will be updated after completion.
+
+[Thu Aug  4 17:58:10 2022]
+rule aggregate:
+    input: &lt;TBD&gt;
+    output: output/agg/A.out
+    jobid: 1
+    wildcards: sample=A
+
+
+[Thu Aug  4 17:58:10 2022]
+rule aggregate:
+    input: &lt;TBD&gt;
+    output: output/agg/B.out
+    jobid: 2
+    wildcards: sample=B
+
+
+[Thu Aug  4 17:58:10 2022]
+localrule all:
+    input: output/agg/A.out, output/agg/B.out
+    jobid: 0
+
+Job counts:
+        count   jobs
+        2       aggregate
+        1       all
+        1       binary_decision
+        1       filter_bad_cells
+        5
+</div></code></pre>
+<p>You may have noticed here that we now only have 5 jobs, so less than before. Indeed, if you are looking into the log, snakemake is precising that &quot;<em>Downstream jobs will be updated after completion.</em>&quot; meaning that the DAG and then the number of jobs to be processed can be modified during the execution.</p>
+<p>Let's check that with a real run:</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --forceall
+</div></code></pre>
+<p>Expected output:</p>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        1       filter_bad_cells
+        5
+
+[Thu Aug  4 18:07:27 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 4
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       binary_decision
+        1
+[Thu Aug  4 18:07:28 2022]
+Finished job 4.
+1 of 5 steps (20%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:28 2022]
+checkpoint filter_bad_cells:
+    input: output/bin_col.tsv
+    output: output/filter.tsv
+    jobid: 3
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       filter_bad_cells
+        1
+Updating job 1 (aggregate).
+Updating job 2 (aggregate).
+[Thu Aug  4 18:07:30 2022]
+Finished job 3.
+2 of 12 steps (17%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:30 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 7
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 18:07:30 2022]
+Finished job 7.
+3 of 12 steps (25%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:30 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 13
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 18:07:30 2022]
+Finished job 13.
+4 of 12 steps (33%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:30 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 12
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 18:07:30 2022]
+Finished job 12.
+5 of 12 steps (42%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:30 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 11
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 18:07:30 2022]
+Finished job 11.
+6 of 12 steps (50%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:30 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 10
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 18:07:30 2022]
+Finished job 10.
+7 of 12 steps (58%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 8
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 18:07:31 2022]
+Finished job 8.
+8 of 12 steps (67%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 9
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 18:07:31 2022]
+Finished job 9.
+9 of 12 steps (75%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:31 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 6
+    wildcards: sample=B
+
+[Thu Aug  4 18:07:31 2022]
+Finished job 6.
+10 of 12 steps (83%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:31 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 5
+    wildcards: sample=A
+
+[Thu Aug  4 18:07:31 2022]
+Finished job 5.
+11 of 12 steps (92%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:07:31 2022]
+localrule all:
+    input: output/agg/A.out, output/agg/B.out
+    jobid: 0
+
+[Thu Aug  4 18:07:31 2022]
+Finished job 0.
+12 of 12 steps (100%) <span class="hljs-keyword">done</span>
+</div></code></pre>
+<p>As expected, the number of jobs changed from 5 to 12 during the execution.</p>
+<p>Now let's check the content of the files produced.</p>
+<pre class="hljs"><code><div>tree -h output/
+</div></code></pre>
+<pre class="hljs"><code><div>output
+|-- [4.0K]  A
+|   `-- [4.0K]  extract
+|       |-- [  56]  1A.txt
+|       |-- [  56]  2A.txt
+|       |-- [  57]  3A.txt
+|       `-- [  56]  5A.txt
+|-- [4.0K]  agg
+|   |-- [ 120]  A.out
+|   `-- [ 100]  B.out
+|-- [4.0K]  B
+|   `-- [4.0K]  extract
+|       |-- [  56]  2B.txt
+|       |-- [  57]  4B.txt
+|       `-- [  57]  5B.txt
+|-- [ 265]  bin_col.tsv
+`-- [ 185]  filter.tsv
+
+5 directories, 11 files
+</div></code></pre>
+<p>Bingo! We succeded to dynamically and conditionnaly filtered out cells during the pipeline execution, cells 4A, 1B and 3B were not processed.</p>
+<pre class="hljs"><code><div>cat output/filter.tsv
+</div></code></pre>
+<p>We can see that only cells matching the keep=True statement were kept, as expected.</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>2B</td>
+<td>0.912</td>
+<td>0.99</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4B</td>
+<td>0.648</td>
+<td>10.14</td>
+<td>True</td>
+</tr>
+<tr>
+<td>B</td>
+<td>5B</td>
+<td>0.976</td>
+<td>12.08</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>Let's now check the content of the final files produced by the <code>rule aggregate</code>:</p>
+<pre class="hljs"><code><div>cat output/agg/A.out
+</div></code></pre>
+<p>As previously, cell 4A was not incorporated into the dataframe.</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+<td>True</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snakemake-dag-summary">Snakemake DAG summary</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../Slide3.png" alt="summary"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Step 2. Graphical representation</em></td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-second-checkpoint-data-conditional-execution">3. Second checkpoint: data-conditional execution</h1>
+<p>Okay let's now complicate a bit the analysis. Remember the <code>ratio</code> column? We will define a new binary column called <code>color</code> based on the ratio value (Red if ratio &gt; 5, Blue if ratio &lt;= 5). Regarding the color attributed to the cell, this will be processed differently, by the <code>rule process_red</code> for red-flagged cells, and by the <code>rule process_blue</code> for blue-flagged cells. Both rules will create a new column called <code>processed_ratio</code>, where <code>rule process_red</code> will increase by a factor 1000 (x * 1000) the initial ratio, and <code>rule process_red</code> will decrease by a factor 1000 (x / 1000) this same initial ratio.</p>
+<p>Technically, this is materialised by a new checkpoint rule <code>determine_color</code> that takes as input, the output of the rule <code>aggregate</code> and then produces a new dataframe for each sample. Two rules <code>process_red</code> and <code>process_blue</code> that takes as input the result of the extract rule at the cell level are also created. Finally, we designed an input function <code>process_correct_cells_according_color</code> that will return conditionally a target, based on the color value, and a new rule aggregate_final, that takes this new function as an input and aggregates at the sample level the results of the <code>process_red</code> and <code>process_blue</code>.</p>
+<pre class="hljs"><code><div>checkpoint determine_color:
+    input:
+        file=<span class="hljs-string">"output/agg/{sample}.out"</span>,
+    output:
+        file=<span class="hljs-string">"output/color/{sample}.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"color"</span>] = df[<span class="hljs-string">"ratio"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-string">"Red"</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Blue"</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule process_blue:
+    input:
+        file=<span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    output:
+        file=<span class="hljs-string">"output/{sample}/blue/{cell}.txt"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"processed_ratio"</span>] = df[<span class="hljs-string">"ratio"</span>] * <span class="hljs-number">1000</span>
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule process_red:
+    input:
+        file=<span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    output:
+        file=<span class="hljs-string">"output/{sample}/red/{cell}.txt"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"processed_ratio"</span>] = df[<span class="hljs-string">"ratio"</span>] / <span class="hljs-number">1000</span>
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells_according_color</span><span class="hljs-params">(wildcards)</span>:</span>
+    df = pd.read_csv(
+        checkpoints.determine_color.get(sample=wildcards.sample).output.file, sep=<span class="hljs-string">","</span>
+    )
+
+    l = list()
+    <span class="hljs-keyword">for</span> index, line <span class="hljs-keyword">in</span> df.iterrows():
+
+        <span class="hljs-keyword">if</span> line[<span class="hljs-string">"color"</span>] == <span class="hljs-string">"Blue"</span>:
+            l.append(
+                <span class="hljs-string">"output/{sample}/blue/{cell}.txt"</span>.format(
+                    sample=line[<span class="hljs-string">"sample"</span>], cell=line[<span class="hljs-string">"cell"</span>]
+                )
+            )
+        <span class="hljs-keyword">elif</span> line[<span class="hljs-string">"color"</span>] == <span class="hljs-string">"Red"</span>:
+            l.append(
+                <span class="hljs-string">"output/{sample}/red/{cell}.txt"</span>.format(
+                    sample=line[<span class="hljs-string">"sample"</span>], cell=line[<span class="hljs-string">"cell"</span>]
+                )
+            )
+    <span class="hljs-keyword">return</span> l
+
+
+rule aggregate_final:
+    input:
+        process_correct_cells_according_color,
+    output:
+        <span class="hljs-string">"output/aggregate_final/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>The complete Snakefile looks now the following:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">## Snakefile v3</span>
+
+<span class="hljs-comment"># Import pandas library to process dataframes</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-comment"># Dictionnary to retrieve cell list for each sample</span>
+sample_cell_dict = {
+    <span class="hljs-string">"A"</span>: [<span class="hljs-string">"1A"</span>, <span class="hljs-string">"2A"</span>, <span class="hljs-string">"3A"</span>, <span class="hljs-string">"4A"</span>, <span class="hljs-string">"5A"</span>],
+    <span class="hljs-string">"B"</span>: [<span class="hljs-string">"1B"</span>, <span class="hljs-string">"2B"</span>, <span class="hljs-string">"3B"</span>, <span class="hljs-string">"4B"</span>, <span class="hljs-string">"5B"</span>],
+}
+<span class="hljs-comment"># List of samples to process</span>
+samples = list(sample_cell_dict.keys())
+
+
+rule all:
+    input:
+        <span class="hljs-comment">#========MODIFIED========#</span>
+        [<span class="hljs-string">"output/aggregate_final/A.out"</span>, <span class="hljs-string">"output/aggregate_final/B.out"</span>],
+
+
+rule binary_decision:
+    input:
+        file=<span class="hljs-string">"data/raw.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"keep"</span>] = df[<span class="hljs-string">"probability"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule extract:
+    input:
+        <span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n 1 {input} &gt; {output}
+        grep -P '{wildcards.cell}' {input} &gt;&gt; {output}
+        """</span>
+
+checkpoint filter_bad_cells:
+    input:
+        file=<span class="hljs-string">"output/bin_col.tsv"</span>,
+    output:
+        file=<span class="hljs-string">"output/filter.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df = df.loc[df[<span class="hljs-string">"keep"</span>] == <span class="hljs-literal">True</span>]
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells</span><span class="hljs-params">(wildcards)</span>:</span>
+    df = pd.read_csv(
+        checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file, sep=<span class="hljs-string">","</span>
+    )
+    keep_dict = df[[<span class="hljs-string">"sample"</span>, <span class="hljs-string">"cell"</span>]].groupby(<span class="hljs-string">"sample"</span>)[<span class="hljs-string">"cell"</span>].apply(list).to_dict()
+
+    filtered_list = list()
+    <span class="hljs-keyword">for</span> sample <span class="hljs-keyword">in</span> list(keep_dict.keys()):
+        <span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> keep_dict[sample]:
+            filtered_list.append(
+                <span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>.format(sample=sample, cell=cell)
+            )
+
+    <span class="hljs-keyword">return</span> filtered_list
+
+rule aggregate:
+    input:
+        process_correct_cells,
+    output:
+        <span class="hljs-string">"output/agg/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+
+<span class="hljs-comment">#===============ADDITION===============#</span>
+
+checkpoint determine_color:
+    input:
+        file=<span class="hljs-string">"output/agg/{sample}.out"</span>,
+    output:
+        file=<span class="hljs-string">"output/color/{sample}.tsv"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"color"</span>] = df[<span class="hljs-string">"ratio"</span>].apply(<span class="hljs-keyword">lambda</span> r: <span class="hljs-string">"Red"</span> <span class="hljs-keyword">if</span> r &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Blue"</span>)
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule process_blue:
+    input:
+        file=<span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    output:
+        file=<span class="hljs-string">"output/{sample}/blue/{cell}.txt"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"processed_ratio"</span>] = df[<span class="hljs-string">"ratio"</span>] * <span class="hljs-number">1000</span>
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+rule process_red:
+    input:
+        file=<span class="hljs-string">"output/{sample}/extract/{cell}.txt"</span>,
+    output:
+        file=<span class="hljs-string">"output/{sample}/red/{cell}.txt"</span>,
+    run:
+        df = pd.read_csv(input.file, sep=<span class="hljs-string">","</span>)
+        df[<span class="hljs-string">"processed_ratio"</span>] = df[<span class="hljs-string">"ratio"</span>] / <span class="hljs-number">1000</span>
+        df.to_csv(output.file, sep=<span class="hljs-string">","</span>, index=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_correct_cells_according_color</span><span class="hljs-params">(wildcards)</span>:</span>
+    df = pd.read_csv(
+        checkpoints.determine_color.get(sample=wildcards.sample).output.file, sep=<span class="hljs-string">","</span>
+
+    )
+    l = list()
+    <span class="hljs-keyword">for</span> index, line <span class="hljs-keyword">in</span> df.iterrows():
+
+        <span class="hljs-keyword">if</span> line[<span class="hljs-string">"color"</span>] == <span class="hljs-string">"Blue"</span>:
+            l.append(
+                <span class="hljs-string">"output/{sample}/blue/{cell}.txt"</span>.format(
+                    sample=line[<span class="hljs-string">"sample"</span>], cell=line[<span class="hljs-string">"cell"</span>]
+                )
+            )
+        <span class="hljs-keyword">elif</span> line[<span class="hljs-string">"color"</span>] == <span class="hljs-string">"Red"</span>:
+            l.append(
+                <span class="hljs-string">"output/{sample}/red/{cell}.txt"</span>.format(
+                    sample=line[<span class="hljs-string">"sample"</span>], cell=line[<span class="hljs-string">"cell"</span>]
+                )
+            )
+    <span class="hljs-keyword">return</span> l
+
+
+rule aggregate_final:
+    input:
+        process_correct_cells_according_color,
+    output:
+        <span class="hljs-string">"output/aggregate_final/{sample}.out"</span>,
+    shell:
+        <span class="hljs-string">"""
+        head -n1 {input[0]} &gt; {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} &gt;&gt; {output}
+        """</span>
+</div></code></pre>
+<p>Like before, please first remove the previously created output folder using the following:</p>
+<pre class="hljs"><code><div>rm -rdf output/
+</div></code></pre>
+<p>As usual, let's try a dry-run first:</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --dry-run --forceall
+</div></code></pre>
+<p>Expected output:</p>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        2       determine_color
+        1       filter_bad_cells
+        2       final
+        9
+
+[Fri Aug  5 15:00:46 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 8
+
+[Fri Aug  5 15:00:46 2022]
+checkpoint filter_bad_cells:
+    input: output/bin_col.tsv
+    output: output/filter.tsv
+    jobid: 7
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+[Fri Aug  5 15:00:46 2022]
+rule aggregate:
+    input: &lt;TBD&gt;
+    output: output/agg/B.out
+    jobid: 6
+    wildcards: sample=B
+
+
+[Fri Aug  5 15:00:46 2022]
+rule aggregate:
+    input: &lt;TBD&gt;
+    output: output/agg/A.out
+    jobid: 5
+    wildcards: sample=A
+
+
+[Fri Aug  5 15:00:46 2022]
+checkpoint determine_color:
+    input: output/agg/A.out
+    output: output/color/A.tsv
+    jobid: 3
+    wildcards: sample=A
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+[Fri Aug  5 15:00:46 2022]
+checkpoint determine_color:
+    input: output/agg/B.out
+    output: output/color/B.tsv
+    jobid: 4
+    wildcards: sample=B
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+[Fri Aug  5 15:00:46 2022]
+rule final:
+    input: &lt;TBD&gt;
+    output: output/final/A.out
+    jobid: 1
+    wildcards: sample=A
+
+
+[Fri Aug  5 15:00:46 2022]
+rule final:
+    input: &lt;TBD&gt;
+    output: output/final/B.out
+    jobid: 2
+    wildcards: sample=B
+
+
+[Fri Aug  5 15:00:46 2022]
+localrule all:
+    input: output/final/A.out, output/final/B.out
+    jobid: 0
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        2       determine_color
+        1       filter_bad_cells
+        2       final
+        9
+This was a dry-run (flag -n). The order of <span class="hljs-built_in">jobs</span> does not reflect the order of execution.
+</div></code></pre>
+<p>And now let's run the pipeline for real !</p>
+<pre class="hljs"><code><div>snakemake --cores 1 --forceall
+</div></code></pre>
+<pre class="hljs"><code><div>Building DAG of <span class="hljs-built_in">jobs</span>...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        2       aggregate
+        1       all
+        1       binary_decision
+        2       determine_color
+        1       filter_bad_cells
+        2       aggregate_final
+        9
+
+[Thu Aug  4 18:11:28 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 8
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       binary_decision
+        1
+[Thu Aug  4 18:11:29 2022]
+Finished job 8.
+1 of 9 steps (11%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:29 2022]
+checkpoint filter_bad_cells:
+    input: output/bin_col.tsv
+    output: output/filter.tsv
+    jobid: 7
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       filter_bad_cells
+        1
+Updating job 5 (aggregate).
+Updating job 6 (aggregate).
+[Thu Aug  4 18:11:31 2022]
+Finished job 7.
+2 of 16 steps (12%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 16
+    wildcards: sample=B, cell=4B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 16.
+3 of 16 steps (19%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5A.txt
+    jobid: 14
+    wildcards: sample=A, cell=5A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 14.
+4 of 16 steps (25%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2A.txt
+    jobid: 12
+    wildcards: sample=A, cell=2A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 12.
+5 of 16 steps (31%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 17
+    wildcards: sample=B, cell=5B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 17.
+6 of 16 steps (38%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 15
+    wildcards: sample=B, cell=2B
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 15.
+7 of 16 steps (44%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1A.txt
+    jobid: 11
+    wildcards: sample=A, cell=1A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 11.
+8 of 16 steps (50%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:31 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3A.txt
+    jobid: 13
+    wildcards: sample=A, cell=3A
+
+[Thu Aug  4 18:11:31 2022]
+Finished job 13.
+9 of 16 steps (56%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:32 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 9
+    wildcards: sample=A
+
+[Thu Aug  4 18:11:32 2022]
+Finished job 9.
+10 of 16 steps (62%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:32 2022]
+checkpoint determine_color:
+    input: output/agg/A.out
+    output: output/color/A.tsv
+    jobid: 3
+    wildcards: sample=A
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       determine_color
+        1
+Updating job 1 (aggregate_final).
+[Thu Aug  4 18:11:33 2022]
+Finished job 3.
+11 of 20 steps (55%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:33 2022]
+rule process_blue:
+    input: output/A/extract/1A.txt
+    output: output/A/blue/1A.txt
+    jobid: 19
+    wildcards: sample=A, cell=1A
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_blue
+        1
+[Thu Aug  4 18:11:35 2022]
+Finished job 19.
+12 of 20 steps (60%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:35 2022]
+rule aggregate:
+    input: output/A/extract/1A.txt, output/A/extract/2A.txt, output/A/extract/3A.txt, output/A/extract/5A.txt, output/B/extract/2B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 10
+    wildcards: sample=B
+
+[Thu Aug  4 18:11:35 2022]
+Finished job 10.
+13 of 20 steps (65%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:35 2022]
+checkpoint determine_color:
+    input: output/agg/B.out
+    output: output/color/B.tsv
+    jobid: 4
+    wildcards: sample=B
+Downstream <span class="hljs-built_in">jobs</span> will be updated after completion.
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       determine_color
+        1
+Updating job 2 (aggregate_final).
+[Thu Aug  4 18:11:36 2022]
+Finished job 4.
+14 of 23 steps (61%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:36 2022]
+rule process_red:
+    input: output/B/extract/4B.txt
+    output: output/B/red/4B.txt
+    jobid: 25
+    wildcards: sample=B, cell=4B
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_red
+        1
+[Thu Aug  4 18:11:38 2022]
+Finished job 25.
+15 of 23 steps (65%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:38 2022]
+rule process_blue:
+    input: output/A/extract/5A.txt
+    output: output/A/blue/5A.txt
+    jobid: 22
+    wildcards: sample=A, cell=5A
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_blue
+        1
+[Thu Aug  4 18:11:39 2022]
+Finished job 22.
+16 of 23 steps (70%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:39 2022]
+rule process_blue:
+    input: output/A/extract/2A.txt
+    output: output/A/blue/2A.txt
+    jobid: 20
+    wildcards: sample=A, cell=2A
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_blue
+        1
+[Thu Aug  4 18:11:41 2022]
+Finished job 20.
+17 of 23 steps (74%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:41 2022]
+rule process_red:
+    input: output/B/extract/5B.txt
+    output: output/B/red/5B.txt
+    jobid: 26
+    wildcards: sample=B, cell=5B
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_red
+        1
+[Thu Aug  4 18:11:42 2022]
+Finished job 26.
+18 of 23 steps (78%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:42 2022]
+rule process_red:
+    input: output/A/extract/3A.txt
+    output: output/A/red/3A.txt
+    jobid: 21
+    wildcards: sample=A, cell=3A
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_red
+        1
+[Thu Aug  4 18:11:43 2022]
+Finished job 21.
+19 of 23 steps (83%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:44 2022]
+rule process_blue:
+    input: output/B/extract/2B.txt
+    output: output/B/blue/2B.txt
+    jobid: 24
+    wildcards: sample=B, cell=2B
+
+Job counts:
+        count   <span class="hljs-built_in">jobs</span>
+        1       process_blue
+        1
+[Thu Aug  4 18:11:45 2022]
+Finished job 24.
+20 of 23 steps (87%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:45 2022]
+rule aggregate_final:
+    input: output/B/blue/2B.txt, output/B/red/4B.txt, output/B/red/5B.txt
+    output: output/aggregate_final/B.out
+    jobid: 23
+    wildcards: sample=B
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 23.
+21 of 23 steps (91%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:45 2022]
+rule aggregate_final:
+    input: output/A/blue/1A.txt, output/A/blue/2A.txt, output/A/red/3A.txt, output/A/blue/5A.txt
+    output: output/aggregate_final/A.out
+    jobid: 18
+    wildcards: sample=A
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 18.
+22 of 23 steps (96%) <span class="hljs-keyword">done</span>
+
+[Thu Aug  4 18:11:45 2022]
+localrule all:
+    input: output/aggregate_final/A.out, output/aggregate_final/B.out
+    jobid: 0
+
+[Thu Aug  4 18:11:45 2022]
+Finished job 0.
+23 of 23 steps (100%) <span class="hljs-keyword">done</span>
+Complete <span class="hljs-built_in">log</span>: /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/TEST/.snakemake/<span class="hljs-built_in">log</span>/2022-08-04T181127.319332.snakemake.log
+</div></code></pre>
+<p>As previously, snakemake uses the sentence &quot;<em>Downstream jobs will be updated after completion</em>&quot; to indicates us that the DAG will be dynamically updated based on the checkpoint outputs.</p>
+<p>Let's now check if the second checkpoint successfully did what we wanted:</p>
+<pre class="hljs"><code><div>tree -h output/
+</div></code></pre>
+<pre class="hljs"><code><div>output
+|-- [4.0K]  A
+|   |-- [4.0K]  blue
+|   |   |-- [  79]  1A.txt
+|   |   |-- [  79]  2A.txt
+|   |   `-- [  79]  5A.txt
+|   |-- [4.0K]  extract
+|   |   |-- [  56]  1A.txt
+|   |   |-- [  56]  2A.txt
+|   |   |-- [  57]  3A.txt
+|   |   `-- [  56]  5A.txt
+|   `-- [4.0K]  red
+|       `-- [  81]  3A.txt
+|-- [4.0K]  agg
+|   |-- [ 120]  A.out
+|   `-- [ 100]  B.out
+|-- [4.0K]  B
+|   |-- [4.0K]  blue
+|   |   `-- [  78]  2B.txt
+|   |-- [4.0K]  extract
+|   |   |-- [  56]  2B.txt
+|   |   |-- [  57]  4B.txt
+|   |   `-- [  57]  5B.txt
+|   `-- [4.0K]  red
+|       |-- [  81]  4B.txt
+|       `-- [  81]  5B.txt
+|-- [ 265]  bin_col.tsv
+|-- [4.0K]  color
+|   |-- [ 145]  A.tsv
+|   `-- [ 119]  B.tsv
+|-- [ 185]  filter.tsv
+`-- [4.0K]  final
+    |-- [ 165]  A.out
+    `-- [ 138]  B.out
+
+11 directories, 22 files
+```
+
+Folders `red` and `blue` and corresponding files were successfully created!
+
+Let<span class="hljs-string">'s now get a look inside the files.
+
+```bash
+cat output/A/blue/5A.txt
+</span></div></code></pre>
+<p>You should obtain the following, <code>processed_ratio</code> was well <strong>increased</strong> by a fold 1000 for blue cell 5A ...</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+<th>processed_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+<td>1380.0</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>cat output/B/red/4B.txt
+</div></code></pre>
+<p>... while here for the red cell 4B, it was <strong>decreased</strong> by a fold 1000.</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+<th>processed_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>4B</td>
+<td>0.648</td>
+<td>10.14</td>
+<td>True</td>
+<td>0.01014</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>cat output/aggregate_final/A.out
+</div></code></pre>
+<p>At the sample-level, the output of <code>aggregate_final</code> was successfully produced, aggregating cells while keeping the <code>processed_ratio</code> new column produced.</p>
+<table>
+<thead>
+<tr>
+<th>sample</th>
+<th>cell</th>
+<th>probability</th>
+<th>ratio</th>
+<th>keep</th>
+<th>processed_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1A</td>
+<td>0.873</td>
+<td>1.54</td>
+<td>True</td>
+<td>1540.0</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2A</td>
+<td>0.679</td>
+<td>2.12</td>
+<td>True</td>
+<td>2120.0</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3A</td>
+<td>0.746</td>
+<td>13.74</td>
+<td>True</td>
+<td>0.01374</td>
+</tr>
+<tr>
+<td>A</td>
+<td>5A</td>
+<td>0.732</td>
+<td>1.38</td>
+<td>True</td>
+<td>1380.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snakemake-dag-summary">Snakemake DAG summary</h3>
+<p>Let's summarize with the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../Slide4.png" alt="summary"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Step 3. Graphical summary</em></td>
+</tr>
+</tbody>
+</table>
+<p>You should now be able to use <code>checkpoint rule</code> in snakemake!</p>
+<p>Thanks for reading.</p>
+
+</body>
+</html>

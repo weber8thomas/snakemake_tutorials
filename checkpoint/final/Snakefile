@@ -1,0 +1,158 @@
+# Import pandas library to process dataframes
+import pandas as pd
+
+# Dictionnary to retrieve cell list for each sample
+sample_cell_dict = {
+    "A": ["1A", "2A", "3A", "4A", "5A"],
+    "B": ["1B", "2B", "3B", "4B", "5B"],
+}
+# List of samples to process
+samples = list(sample_cell_dict.keys())
+
+list_all = list()
+# Iterate over sample and cell for each of the sample in order to build a final list of targets
+for sample in samples:
+    for cell in sample_cell_dict[sample]:
+        list_all.append(
+            "output/{sample}/extract/{cell}.txt".format(sample=sample, cell=cell)
+        )
+
+
+rule all:
+    input:
+        # complete_list_of_targets,
+        ["output/final/A.out", "output/final/B.out"],
+        # list_all
+
+
+rule binary_decision:
+    input:
+        file="data/raw.tsv",
+    output:
+        file="output/bin_col.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["keep"] = df["probability"].apply(lambda r: True if r > 0.5 else False)
+        df.to_csv(output.file, sep=",", index=False)
+
+
+checkpoint filter_bad_cells:
+    input:
+        file="output/bin_col.tsv",
+    output:
+        file="output/filter.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df = df.loc[df["keep"] == True]
+        df.to_csv(output.file, sep=",", index=False)
+
+
+rule extract:
+    input:
+        # "data/raw.tsv",
+        "output/bin_col.tsv",
+    output:
+        "output/{sample}/extract/{cell}.txt",
+    shell:
+        """
+        head -n 1 {input} > {output}
+        grep -P '{wildcards.cell}' {input} >> {output}
+        """
+
+
+def process_correct_cells(wildcards):
+    df = pd.read_csv(
+        checkpoints.filter_bad_cells.get(sample=wildcards.sample).output.file, sep=","
+    )
+    keep_dict = df[["sample", "cell"]].groupby("sample")["cell"].apply(list).to_dict()
+
+    filtered_list = list()
+    for sample in list(keep_dict.keys()):
+        for cell in keep_dict[sample]:
+            filtered_list.append(
+                "output/{sample}/extract/{cell}.txt".format(sample=sample, cell=cell)
+            )
+
+    return filtered_list
+
+
+rule aggregate:
+    input:
+        process_correct_cells,
+        # expand("output/{sample}/extract/{cell}.txt", sample=samples, cell=sample_cell_dict[sample])
+    output:
+        "output/agg/{sample}.out",
+    shell:
+        """
+        head -n1 {input[0]} > {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} >> {output}
+        """
+
+
+checkpoint determine_color:
+    input:
+        file="output/agg/{sample}.out",
+    output:
+        file="output/color/{sample}.tsv",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["color"] = df["ratio"].apply(lambda r: "Red" if r > 5 else "Blue")
+        df.to_csv(output.file, sep=",", index=False)
+
+
+rule process_blue:
+    input:
+        file="output/{sample}/extract/{cell}.txt",
+    output:
+        file="output/{sample}/blue/{cell}.txt",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["processed_ratio"] = df["ratio"] * 1000
+        df.to_csv(output.file, sep=",", index=False)
+
+
+rule process_red:
+    input:
+        file="output/{sample}/extract/{cell}.txt",
+    output:
+        file="output/{sample}/red/{cell}.txt",
+    run:
+        df = pd.read_csv(input.file, sep=",")
+        df["processed_ratio"] = df["ratio"] / 1000
+        df.to_csv(output.file, sep=",", index=False)
+
+
+def process_correct_cells_according_color(wildcards):
+    df = pd.read_csv(
+        checkpoints.determine_color.get(sample=wildcards.sample).output.file, sep=","
+    )
+
+    l = list()
+    for index, line in df.iterrows():
+
+        if line["color"] == "Blue":
+            l.append(
+                "output/{sample}/blue/{cell}.txt".format(
+                    sample=line["sample"], cell=line["cell"]
+                )
+            )
+        elif line["color"] == "Red":
+            l.append(
+                "output/{sample}/red/{cell}.txt".format(
+                    sample=line["sample"], cell=line["cell"]
+                )
+            )
+    print(l)
+    return l
+
+
+rule final:
+    input:
+        process_correct_cells_according_color,
+    output:
+        "output/final/{sample}.out",
+    shell:
+        """
+        head -n1 {input[0]} > {output}
+        tail -q -n +2 {input} | grep {wildcards.sample} >> {output}
+        """

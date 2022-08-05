@@ -1,0 +1,207 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+aggregate              2              1              1
+all                    1              1              1
+binary_decision        1              1              1
+extract               10              1              1
+total                 14              1              1
+
+Select jobs to execute...
+
+[Thu Aug  4 13:08:03 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: output/bin_col.tsv
+    jobid: 3
+    reason: Forced execution
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 3.
+1 of 14 steps (7%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/4B.txt
+    jobid: 11
+    reason: Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=4B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 11.
+2 of 14 steps (14%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/1B.txt
+    jobid: 2
+    reason: Missing output files: output/A/extract/1B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=1B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 2.
+3 of 14 steps (21%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/2B.txt
+    jobid: 9
+    reason: Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=2B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 9.
+4 of 14 steps (29%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/5B.txt
+    jobid: 7
+    reason: Missing output files: output/A/extract/5B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=5B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 7.
+5 of 14 steps (36%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:06 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/2B.txt
+    jobid: 4
+    reason: Missing output files: output/A/extract/2B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=2B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:06 2022]
+Finished job 4.
+6 of 14 steps (43%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/5B.txt
+    jobid: 12
+    reason: Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 12.
+7 of 14 steps (50%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/1B.txt
+    jobid: 8
+    reason: Missing output files: output/B/extract/1B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=1B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 8.
+8 of 14 steps (57%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/4B.txt
+    jobid: 6
+    reason: Missing output files: output/A/extract/4B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=4B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 6.
+9 of 14 steps (64%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/B/extract/3B.txt
+    jobid: 10
+    reason: Missing output files: output/B/extract/3B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=B, cell=3B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 10.
+10 of 14 steps (71%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule extract:
+    input: output/bin_col.tsv
+    output: output/A/extract/3B.txt
+    jobid: 5
+    reason: Missing output files: output/A/extract/3B.txt; Input files updated by another job: output/bin_col.tsv
+    wildcards: sample=A, cell=3B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 5.
+11 of 14 steps (79%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule aggregate:
+    input: output/A/extract/1B.txt, output/A/extract/2B.txt, output/A/extract/3B.txt, output/A/extract/4B.txt, output/A/extract/5B.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/B.out
+    jobid: 13
+    reason: Input files updated by another job: output/B/extract/2B.txt, output/B/extract/1B.txt, output/A/extract/2B.txt, output/A/extract/5B.txt, output/B/extract/5B.txt, output/A/extract/4B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/A/extract/3B.txt, output/A/extract/1B.txt
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Finished job 13.
+12 of 14 steps (86%) done
+Select jobs to execute...
+
+[Thu Aug  4 13:08:07 2022]
+rule aggregate:
+    input: output/A/extract/1B.txt, output/A/extract/2B.txt, output/A/extract/3B.txt, output/A/extract/4B.txt, output/A/extract/5B.txt, output/B/extract/1B.txt, output/B/extract/2B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/B/extract/5B.txt
+    output: output/agg/A.out
+    jobid: 1
+    reason: Input files updated by another job: output/B/extract/2B.txt, output/B/extract/1B.txt, output/A/extract/2B.txt, output/A/extract/5B.txt, output/B/extract/5B.txt, output/A/extract/4B.txt, output/B/extract/3B.txt, output/B/extract/4B.txt, output/A/extract/3B.txt, output/A/extract/1B.txt
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+
+[Thu Aug  4 13:08:07 2022]
+Error in rule aggregate:
+    jobid: 1
+    output: output/agg/A.out
+    shell:
+        
+        head -n1 output/A/extract/1B.txt > output/agg/A.out
+        tail -q -n +2 output/A/extract/1B.txt output/A/extract/2B.txt output/A/extract/3B.txt output/A/extract/4B.txt output/A/extract/5B.txt output/B/extract/1B.txt output/B/extract/2B.txt output/B/extract/3B.txt output/B/extract/4B.txt output/B/extract/5B.txt | grep A >> output/agg/A.out
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job aggregate since they might be corrupted:
+output/agg/A.out
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-04T130801.627780.snakemake.log

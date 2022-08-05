@@ -1,0 +1,151 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+aggregate        2              1              1
+all              1              1              1
+extract          7              1              1
+total           10              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/B/5B.txt
+    jobid: 13
+    reason: Missing output files: data/B/5B.txt
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:39 2022]
+Finished job 13.
+1 of 10 steps (10%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/B/4B.txt
+    jobid: 12
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=B, cell=4B
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:39 2022]
+Finished job 12.
+2 of 10 steps (20%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/B/2B.txt
+    jobid: 11
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=B, cell=2B
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:39 2022]
+Finished job 11.
+3 of 10 steps (30%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/A/2A.txt
+    jobid: 8
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=A, cell=2A
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:39 2022]
+Finished job 8.
+4 of 10 steps (40%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/A/1A.txt
+    jobid: 7
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=A, cell=1A
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:39 2022]
+Finished job 7.
+5 of 10 steps (50%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:39 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/A/3A.txt
+    jobid: 9
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=A, cell=3A
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:40 2022]
+Finished job 9.
+6 of 10 steps (60%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:40 2022]
+rule extract:
+    input: data/raw.tsv
+    output: data/A/5A.txt
+    jobid: 10
+    reason: Updated input files: data/raw.tsv
+    wildcards: sample=A, cell=5A
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:40 2022]
+Finished job 10.
+7 of 10 steps (70%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:40 2022]
+rule aggregate:
+    input: data/A/1A.txt, data/A/2A.txt, data/A/3A.txt, data/A/5A.txt, data/B/2B.txt, data/B/4B.txt, data/B/5B.txt
+    output: data/A.txt
+    jobid: 1
+    reason: Missing output files: data/A.txt; Input files updated by another job: data/A/2A.txt, data/B/4B.txt, data/B/5B.txt, data/A/1A.txt, data/A/5A.txt, data/A/3A.txt, data/B/2B.txt
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:40 2022]
+Finished job 1.
+8 of 10 steps (80%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:40 2022]
+rule aggregate:
+    input: data/A/1A.txt, data/A/2A.txt, data/A/3A.txt, data/A/5A.txt, data/B/2B.txt, data/B/4B.txt, data/B/5B.txt
+    output: data/B.txt
+    jobid: 4
+    reason: Missing output files: data/B.txt; Input files updated by another job: data/A/2A.txt, data/B/4B.txt, data/B/5B.txt, data/A/1A.txt, data/A/5A.txt, data/A/3A.txt, data/B/2B.txt
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:40 2022]
+Finished job 4.
+9 of 10 steps (90%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:46:40 2022]
+localrule all:
+    input: data/A.txt, data/B.txt
+    jobid: 0
+    reason: Input files updated by another job: data/B.txt, data/A.txt
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:46:40 2022]
+Finished job 0.
+10 of 10 steps (100%) done
+Complete log: .snakemake/log/2022-08-03T234637.092454.snakemake.log

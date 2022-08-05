@@ -1,0 +1,14 @@
+Building DAG of jobs...
+MissingInputException in line 14 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/Snakefile:
+Missing input files for rule all:
+    affected files:
+        data/B/all/3B.sort.mdup.bam
+        data/A/all/3A.sort.mdup.bam
+        data/A/all/5A.sort.mdup.bam
+        data/A/all/1A.sort.mdup.bam
+        data/B/all/5B.sort.mdup.bam
+        data/B/all/2B.sort.mdup.bam
+        data/A/all/2A.sort.mdup.bam
+        data/A/all/4A.sort.mdup.bam
+        data/B/all/1B.sort.mdup.bam
+        data/B/all/4B.sort.mdup.bam

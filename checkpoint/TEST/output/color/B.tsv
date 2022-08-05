@@ -1,0 +1,4 @@
+sample,cell,probability,ratio,keep,color
+B,2B,0.912,0.99,True,Blue
+B,4B,0.648,10.14,True,Red
+B,5B,0.976,12.08,True,Red

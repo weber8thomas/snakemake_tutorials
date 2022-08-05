@@ -1,0 +1,3 @@
+TypeError in line 60 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+process_correct_cells() missing 1 required positional argument: 'wildcards'
+  File "/g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk", line 60, in <module>

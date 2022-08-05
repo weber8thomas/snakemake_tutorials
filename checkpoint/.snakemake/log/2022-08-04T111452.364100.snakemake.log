@@ -1,0 +1,29 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+aggregate              2              1              1
+all                    1              1              1
+binary_decision        1              1              1
+extract                4              1              1
+process_blue           4              1              1
+process_red            3              1              1
+total                 15              1              1
+
+Select jobs to execute...
+
+[Thu Aug  4 11:14:54 2022]
+rule process_red:
+    input: output/B/5B.txt
+    output: output/B/red/5B.txt
+    jobid: 16
+    reason: Forced execution
+    wildcards: sample=B, cell=5B
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-04T111452.364100.snakemake.log

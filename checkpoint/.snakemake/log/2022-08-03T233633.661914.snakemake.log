@@ -1,0 +1,48 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count    min threads    max threads
+----------------  -------  -------------  -------------
+aggregate              10              1              1
+all                     1              1              1
+binary_decision         1              1              1
+filter_bad_cells        1              1              1
+total                  13              1              1
+
+Select jobs to execute...
+
+[Wed Aug  3 23:36:35 2022]
+rule binary_decision:
+    input: data/raw.tsv
+    output: data/bin_col.tsv
+    jobid: 3
+    reason: Missing output files: data/bin_col.tsv; Updated input files: data/raw.tsv
+    resources: tmpdir=/tmp
+
+[Wed Aug  3 23:36:38 2022]
+Finished job 3.
+1 of 13 steps (8%) done
+Select jobs to execute...
+
+[Wed Aug  3 23:36:38 2022]
+checkpoint filter_bad_cells:
+    input: data/bin_col.tsv
+    output: data/filter.tsv
+    jobid: 2
+    reason: Missing output files: data/filter.tsv; Input files updated by another job: data/bin_col.tsv
+    resources: tmpdir=/tmp
+Downstream jobs will be updated after completion.
+
+[Wed Aug  3 23:36:41 2022]
+Finished job 2.
+2 of 13 steps (15%) done
+InputFunctionException in line 58 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk:
+Error:
+  TypeError: '_GeneratorContextManager' object is not subscriptable
+Wildcards:
+  sample=A
+  cell=1A
+Traceback:
+  File "/g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/B_Snakefile.smk", line 51, in process_correct_cells

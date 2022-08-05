@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in line 37 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/Snakefile:
+Missing input files for rule filter_bad_cells:
+    output: output/filter.tsv
+    affected files:
+        data/bin_col.tsv

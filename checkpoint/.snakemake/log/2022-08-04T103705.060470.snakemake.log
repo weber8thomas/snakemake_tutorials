@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in line 106 of /g/korbel2/weber/workspace/snakemake_tutorials/checkpoint/Snakefile:
+Wildcards in input files cannot be determined from output files:
+'cell'

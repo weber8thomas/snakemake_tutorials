@@ -1,0 +1,2 @@
+sample	cell	probability	ratio	keep
+B	2B	0.912	0.99	True
