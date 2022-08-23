@@ -1329,7 +1329,7 @@ As previously, cell 4A was not incorporated into the dataframe.
 
 # 3. Second checkpoint: data-conditional execution
 
-Okay let's now complicate a bit the analysis. Remember the `ratio` column? We will define a new binary column called `color` based on the ratio value (Red if ratio > 5, Blue if ratio <= 5). Regarding the color attributed to the cell, this will be processed differently, by the `rule process_red` for red-flagged cells, and by the `rule process_blue` for blue-flagged cells. Both rules will create a new column called `processed_ratio`, where `rule process_red` will increase by a factor 1000 (x \* 1000) the initial ratio, and `rule process_red` will decrease by a factor 1000 (x / 1000) this same initial ratio.
+Okay let's now complicate a bit the analysis. Remember the `ratio` column? We will define a new binary column called `color` based on the ratio value (Red if ratio > 5, Blue if ratio <= 5). Regarding the color attributed to the cell, this will be processed differently, by the `rule process_red` for red-flagged cells, and by the `rule process_blue` for blue-flagged cells. Both rules will create a new column called `processed_ratio`, where `rule process_` will increase by a factor 1000 (x \* 1000) the initial ratio, and `rule process_red` will decrease by a factor 1000 (x / 1000) this same initial ratio.
 
 Technically, this is materialised by a new checkpoint rule `determine_color` that takes as input, the output of the rule `aggregate` and then produces a new dataframe for each sample. Two rules `process_red` and `process_blue` that takes as input the result of the extract rule at the cell level are also created. Finally, we designed an input function `process_correct_cells_according_color` that will return conditionally a target, based on the color value, and a new rule aggregate_final, that takes this new function as an input and aggregates at the sample level the results of the `process_red` and `process_blue`.
 
@@ -1988,7 +1988,7 @@ Let's now check if the second checkpoint successfully did what we wanted:
 tree -h output/
 ```
 
-````bash
+```bash
 output
 |-- [4.0K]  A
 |   |-- [4.0K]  blue
@@ -2031,11 +2031,11 @@ Folders `red` and `blue` and corresponding files were successfully created!
 
 Let's now get a look inside the files.
 
+You should obtain the following, `processed_ratio` was well **increased** by a fold 1000 for blue cell 5A ...
+
 ```bash
 cat output/A/blue/5A.txt
-````
-
-You should obtain the following, `processed_ratio` was well **increased** by a fold 1000 for blue cell 5A ...
+```
 
 | sample | cell | probability | ratio | keep | processed_ratio |
 | ------ | ---- | ----------- | ----- | ---- | --------------- |
